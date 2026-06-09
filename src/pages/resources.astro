@@ -1,0 +1,200 @@
+---
+import PageHeading from "../components/ui/PageHeading.astro";
+import { resources } from "../data/content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const organization = resources[0];
+const artists = resources.slice(1, 3);
+const books = [resources[3], resources[4], resources[3], resources[3]];
+---
+
+<BaseLayout title="Resource Guide" height={2544}>
+  <PageHeading title="Resource Guide" subtitle="For Inspiration and Help" />
+  <section class="resource-feature">
+    <div>
+      <h2 class="serif">Become a Member</h2>
+      <article class="resource-big">
+        <img src={organization.image.src} alt="" />
+        <div>
+          <span>ORGANIZATIONS</span>
+          <h3>{organization.title}</h3>
+          <p>{organization.subtitle}</p>
+          <a href={organization.href} target="_blank">VIEW &nbsp; ↗</a>
+        </div>
+      </article>
+    </div>
+    <div>
+      <h2 class="serif">Artists</h2>
+      <div class="artists">
+        {artists.map((artist) => (
+          <article>
+            <img src={artist.image.src} alt="" />
+            <span>{artist.title.includes("Frida") ? "FRIDA KAHLO" : "YAYOI KUSAMA"}</span>
+            <h3>{artist.title}</h3>
+            <p>{artist.subtitle}</p>
+            <span class="view">VIEW &nbsp; ↗</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="book-section">
+    <h2 class="serif">To Learn More (Books &amp; Media)</h2>
+    <div class="book-grid">
+      {books.map((book) => (
+        <article>
+          <div><img src={book.image.src} alt="" /></div>
+          <span>{book.subtitle}</span>
+          <h3>{book.title}</h3>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="disclaimer soft-panel">
+    <h2 class="serif">“Disclaimer”</h2>
+    <p>
+      We provide these links for information and inspiration. We are not
+      responsible for the content on external websites. Please use your own
+      judgment.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .resource-feature {
+    position: absolute;
+    top: 418px;
+    left: 130px;
+    display: grid;
+    width: 1180px;
+    grid-template-columns: 580px 580px;
+    gap: 20px;
+  }
+
+  h2 {
+    margin: 0 0 38px;
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  .resource-big,
+  .artists article {
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .resource-big {
+    width: 580px;
+    height: 460px;
+  }
+
+  .resource-big img {
+    width: 580px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .resource-big div,
+  .artists article {
+    padding: 28px 24px;
+  }
+
+  .artists {
+    display: grid;
+    grid-template-columns: repeat(2, 280px);
+    gap: 20px;
+  }
+
+  .artists article {
+    height: 460px;
+    padding: 0 24px 28px;
+  }
+
+  .artists img {
+    width: 280px;
+    height: 200px;
+    margin-left: -24px;
+    object-fit: cover;
+  }
+
+  article span {
+    display: block;
+    margin-top: 26px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+  }
+
+  article h3 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  article p {
+    color: var(--ink-soft);
+    font-size: 12px;
+    line-height: 20px;
+    white-space: pre-line;
+  }
+
+  article a,
+  .view {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  .book-section {
+    position: absolute;
+    top: 1138px;
+    left: 130px;
+    width: 1180px;
+  }
+
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 254px);
+    gap: 55px;
+  }
+
+  .book-grid article > div {
+    display: grid;
+    width: 254px;
+    height: 325px;
+    place-items: center;
+    border-radius: 18px;
+    background: #f5f2ed;
+  }
+
+  .book-grid img {
+    width: 135px;
+    height: 190px;
+    object-fit: cover;
+  }
+
+  .book-grid h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .disclaimer {
+    position: absolute;
+    top: 1718px;
+    left: 130px;
+    width: 1180px;
+    height: 210px;
+    padding-top: 46px;
+    text-align: center;
+  }
+
+  .disclaimer h2 {
+    margin: 0 0 28px;
+  }
+
+  .disclaimer p {
+    color: #78716d;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+</style>

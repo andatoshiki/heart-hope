@@ -1,0 +1,142 @@
+---
+import PageHeading from "../components/ui/PageHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import yellowFlowers from "../assets/images/yellow-flowers.png";
+import colorPlume from "../assets/images/color-plume.png";
+import galleryWall from "../assets/images/gallery-wall.png";
+---
+
+<BaseLayout title="Art Healing 101" height={2859}>
+  <PageHeading
+    title="Art Healing 101"
+    subtitle="Welcome! This is a space where feelings can speak without words."
+  />
+
+  <section class="healing-section first">
+    <img src={yellowFlowers.src} alt="Yellow flowers" />
+    <div>
+      <h2 class="serif">What is Art Healing?</h2>
+      <p>
+        It is a gentle way to explore your inner world through creativity. NO
+        talent needed, only CURIOSITY. When feelings are too big or confusing
+        for words, art can be your voice.
+      </p>
+    </div>
+  </section>
+
+  <section class="healing-section second">
+    <div>
+      <h2 class="serif">Why it works</h2>
+      <p>
+        When words fall short, art can be a bridge. Art connects us to the
+        present moment and our deeper selves. It's a way to listen to your
+        heart, not just your head.
+      </p>
+    </div>
+    <img src={colorPlume.src} alt="A colorful plume" />
+  </section>
+
+  <section class="healing-section third">
+    <img src={galleryWall.src} alt="A wall filled with artwork" />
+    <div>
+      <h2 class="serif">You might try</h2>
+      <p>
+        Drawing/Painting: Let your hand move freely<br />
+        Music/Sound: Match your mood with rhythm<br />
+        Movement: Stretch, sway, or just walk<br />
+        Writing: Let words flow without editing
+      </p>
+    </div>
+  </section>
+
+  <section class="note soft-panel">
+    <blockquote>
+      “REMEMBER, YOU DON’T NEED TO BE AN ARTIST. IT’S ABOUT THE<br />
+      PROCESS, NOT THE PRODUCT.”
+    </blockquote>
+    <p>
+      A Quick Note: This website offers tools for self-exploration and emotional
+      wellness. It is not a substitute for professional therapy.<br />
+      If you are in crisis, please seek help from a qualified mental health
+      provider.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .healing-section {
+    position: absolute;
+    left: 104px;
+    display: grid;
+    width: 1232px;
+    align-items: center;
+    grid-template-columns: 576px 1fr;
+    gap: 80px;
+  }
+
+  .first {
+    top: 337px;
+  }
+
+  .second {
+    top: 825px;
+  }
+
+  .third {
+    top: 1313px;
+  }
+
+  .healing-section img {
+    width: 576px;
+    height: 360px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+  }
+
+  .healing-section h2 {
+    margin: 0 0 16px;
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 43px;
+  }
+
+  .healing-section p {
+    max-width: 560px;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 23px;
+  }
+
+  .second {
+    grid-template-columns: 576px 576px;
+  }
+
+  .note {
+    position: absolute;
+    top: 1873px;
+    left: 104px;
+    width: 1232px;
+    height: 370px;
+    padding-top: 96px;
+    text-align: center;
+  }
+
+  blockquote {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    line-height: 32px;
+  }
+
+  .note p {
+    margin: 38px 0 0;
+    color: #78716d;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+  }
+</style>

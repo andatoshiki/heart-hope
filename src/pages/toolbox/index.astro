@@ -1,0 +1,24 @@
+---
+import ToolboxFilter from "../../components/react/ToolboxFilter";
+import PageHeading from "../../components/ui/PageHeading.astro";
+import { activities } from "../../data/content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const activityItems = activities.map((activity) => ({
+  slug: activity.slug,
+  category: activity.category,
+  categoryLabel: activity.categoryLabel,
+  title: activity.title,
+  summary: activity.summary,
+  image: activity.image.src,
+  detailSlug: activity.detailSlug,
+}));
+---
+
+<BaseLayout title="Healing Activities Toolbox" height={2413}>
+  <PageHeading
+    title="Healing Activities Toolbox"
+    subtitle="Explore the world of art healing"
+  />
+  <ToolboxFilter activities={activityItems} client:load />
+</BaseLayout>

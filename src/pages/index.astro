@@ -1,0 +1,298 @@
+---
+import ActivityCard from "../components/ui/ActivityCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { activities } from "../data/content";
+import blueFlower from "../assets/images/blue-flower.png";
+import clock from "../assets/images/clock.jpg";
+import corridorTree from "../assets/images/corridor-tree.png";
+---
+
+<BaseLayout title="Home" height={4042}>
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow">WELCOME TO HEART TO HEART</p>
+    <h1 id="hero-title" class="serif">
+      This is a space where feelings<br />can speak without words
+    </h1>
+    <a class="hero-button" href="/toolbox">EXPLORE ART WORLD &nbsp; ↗</a>
+    <div class="mountain"></div>
+  </section>
+
+  <section class="home-about">
+    <div class="about-heading">
+      <span class="eyebrow">ABOUT US</span>
+      <h2 class="serif">HeART To Heart</h2>
+    </div>
+    <div class="about-copy">
+      <p>
+        <strong class="serif">H</strong>eart” and “Art.” True connection happens
+        when we share our true hearts through the language of art. That's the
+        journey we're on: from one heart to another.
+      </p>
+      <p>
+        I started this because I often had feelings I couldn't name. Sometimes,
+        words felt too small, too limiting. I felt confused, frustrated, and
+        alone. Then, I discovered that putting a color to my mood, or moving to
+        music, gave those feelings a home.
+      </p>
+    </div>
+  </section>
+
+  <section class="home-toolbox">
+    <p class="eyebrow">WELCOME TO HEALING ACTIVITIES</p>
+    <h2>Toolbox</h2>
+    <div class="activity-row">
+      {activities.slice(0, 3).map((activity) => <ActivityCard activity={activity} />)}
+    </div>
+  </section>
+
+  <section class="home-healing">
+    <p class="eyebrow">WELCOME TO ART HEALING</p>
+    <h2>101</h2>
+    <article class="healing-card left-card">
+      <img src={blueFlower.src} alt="" />
+      <div>
+        <h3>What is Art Healing</h3>
+        <p>
+          It is a gentle way to explore your inner world through creativity. NO
+          talent needed, only CURIOSITY.
+        </p>
+        <a href="/art-healing">LEARN MORE</a>
+      </div>
+    </article>
+    <article class="healing-card right-card">
+      <img src={clock.src} alt="" />
+      <div>
+        <h3>My “Why”</h3>
+        <p>
+          When words fall short, art can be a bridge. Art connects us to the
+          present moment and our deeper selves.
+        </p>
+        <a href="/art-healing">LEARN MORE</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="home-corridor">
+    <img src={corridorTree.src} alt="A quiet tree-lined path" />
+    <div>
+      <h2>The “Right Now” Corridor<br />A Gallery of Shared Feelings.</h2>
+      <p>
+        This is a silent, anonymous gathering space. Every month, we have a
+        gentle theme. You are invited to contribute a small piece of your
+        world—a photo, a few lines of text, a drawing, or a sound recording.
+      </p>
+      <a class="outline-button" href="/corridor">LEARN MORE</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: absolute;
+    top: 81px;
+    width: 1440px;
+    height: 732px;
+    overflow: hidden;
+    background: var(--hero-blue);
+    text-align: center;
+  }
+
+  .hero .eyebrow {
+    margin-top: 190px;
+    color: #fff;
+  }
+
+  .hero h1 {
+    position: relative;
+    z-index: 2;
+    margin: 36px 0 32px;
+    color: #fff;
+    font-size: 74px;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -3px;
+    line-height: 99px;
+  }
+
+  .hero-button {
+    position: relative;
+    z-index: 3;
+    display: inline-flex;
+    height: 42px;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0 24px;
+    color: #121212;
+    background: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+  }
+
+  .mountain {
+    position: absolute;
+    bottom: -60px;
+    left: 565px;
+    width: 310px;
+    height: 310px;
+    background: #252729;
+    transform: rotate(45deg);
+  }
+
+  .home-about {
+    position: absolute;
+    top: 813px;
+    display: grid;
+    width: 1440px;
+    height: 369px;
+    padding: 100px 104px 0;
+    grid-template-columns: 430px 1fr;
+    gap: 110px;
+  }
+
+  .about-heading h2 {
+    margin: 20px 0 0;
+    font-size: 44px;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .about-copy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 23px;
+  }
+
+  .about-copy p {
+    margin: 0;
+  }
+
+  .about-copy strong {
+    color: var(--gold);
+    font-size: 54px;
+    font-style: italic;
+    line-height: 0;
+  }
+
+  .home-toolbox {
+    position: absolute;
+    top: 1182px;
+    width: 1440px;
+    height: 978px;
+    padding-top: 105px;
+    background: #fdfcf9;
+    text-align: center;
+  }
+
+  .home-toolbox h2,
+  .home-healing h2 {
+    margin: 20px 0 0;
+    font-family: "Playfair Display", serif;
+    font-size: 70px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .activity-row {
+    display: grid;
+    margin: 80px 103px 0;
+    grid-template-columns: repeat(3, 380px);
+    gap: 40px;
+    text-align: left;
+  }
+
+  .home-healing {
+    position: absolute;
+    top: 2160px;
+    width: 1440px;
+    height: 701px;
+    padding-top: 85px;
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .healing-card {
+    position: absolute;
+    top: 270px;
+    display: flex;
+    width: 520px;
+    align-items: center;
+    gap: 35px;
+    text-align: left;
+  }
+
+  .left-card {
+    left: 180px;
+  }
+
+  .right-card {
+    left: 760px;
+  }
+
+  .healing-card img {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+  }
+
+  .healing-card h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+  }
+
+  .healing-card p {
+    color: #72716f;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .healing-card a {
+    display: inline-block;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #c9c7c3;
+    font-size: 9px;
+    letter-spacing: 1.3px;
+  }
+
+  .home-corridor {
+    position: absolute;
+    top: 2861px;
+    display: grid;
+    width: 1440px;
+    height: 725px;
+    align-items: center;
+    padding: 0 130px;
+    grid-template-columns: 568px 1fr;
+    gap: 85px;
+  }
+
+  .home-corridor img {
+    width: 568px;
+    height: 358px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+  }
+
+  .home-corridor h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 42px;
+  }
+
+  .home-corridor p {
+    max-width: 545px;
+    margin: 25px 0 32px;
+    color: var(--ink-soft);
+    line-height: 23px;
+  }
+</style>

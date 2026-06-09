@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import paintbrush from "../assets/images/paintbrush-canvas.png";
+---
+
+<BaseLayout title="About Us" height={2279}>
+  <section class="about-story">
+    <div class="copy">
+      <p class="eyebrow">OUR STORY</p>
+      <h1 class="page-title">About HeArt to Heart</h1>
+      <h2 class="serif">Why “HeArt to Heart”?</h2>
+      <p>
+        “Heart” and “Art.” True connection happens when we share our true hearts
+        through the language of art. That's the journey we're on: from one heart
+        to another.
+      </p>
+      <h2 class="serif">My “Why”</h2>
+      <p>
+        I started this because I often had feelings I couldn't name. Sometimes,
+        words felt too small, too limiting. I felt confused, frustrated, and
+        alone. Then, I discovered that putting a color to my mood, or moving to
+        music, gave those feelings a home. It was a quiet revolution inside me.
+        I wanted to build a bridge so others might find that path, too.
+      </p>
+      <h2 class="serif">From School Club to This Website</h2>
+      <p>
+        HeArt to Heart began in my school—a small group of friends sharing art
+        activities. Seeing how a simple exercise could light up someone's eyes
+        made me dream bigger. This website is that dream: to extend our circle
+        beyond the classroom walls.
+      </p>
+    </div>
+    <img src={paintbrush.src} alt="A paintbrush covered in bright paint" />
+  </section>
+
+  <section class="values soft-panel">
+    <blockquote class="serif">“Art is not a profession, but a way of life.”</blockquote>
+    <div class="value-grid">
+      <article>
+        <h3>Explore</h3>
+        <p>Digging out the aesthetic moments hidden in daily life, redefining the ordinary.</p>
+      </article>
+      <article>
+        <h3>Heal</h3>
+        <p>Relieving anxiety and finding inner peace and strength through creation and observation.</p>
+      </article>
+      <article>
+        <h3>Connect</h3>
+        <p>Building a warm community where every heart that loves art can meet.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-story {
+    position: absolute;
+    top: 161px;
+    left: 112px;
+    display: grid;
+    width: 1216px;
+    grid-template-columns: 575px 568px;
+    gap: 73px;
+  }
+
+  .copy h1 {
+    margin: 33px 0 37px;
+    font-size: 52px;
+    line-height: 69px;
+  }
+
+  .copy h2 {
+    margin: 24px 0 10px;
+    color: var(--gold);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .copy p:not(.eyebrow) {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 23px;
+  }
+
+  .about-story img {
+    width: 568px;
+    height: 806px;
+    margin-top: 44px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+  }
+
+  .values {
+    position: absolute;
+    top: 1211px;
+    left: 112px;
+    width: 1216px;
+    height: 452px;
+    padding: 120px 145px 0;
+    text-align: center;
+  }
+
+  blockquote {
+    margin: 0;
+    font-size: 32px;
+    font-style: italic;
+  }
+
+  .value-grid {
+    display: grid;
+    margin-top: 60px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 65px;
+  }
+
+  h3 {
+    margin: 0 0 20px;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+  }
+
+  .value-grid p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+  }
+</style>

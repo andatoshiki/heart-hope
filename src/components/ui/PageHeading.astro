@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  top?: number;
+}
+
+const { title, subtitle, top = 149 } = Astro.props;
+---
+
+<header class="page-heading" style={`top:${top}px`}>
+  <h1 class="page-title">{title}</h1>
+  <p>{subtitle}</p>
+</header>
+
+<style>
+  .page-heading {
+    position: absolute;
+    left: 0;
+    width: 1440px;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin: 13px 0 0;
+    color: #78716d;
+    font-size: 12px;
+    font-weight: 200;
+    letter-spacing: 1.15px;
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+import "@fontsource/inter/200.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/400-italic.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/montserrat/500.css";
+import "@fontsource/playfair-display/400.css";
+import "@fontsource/playfair-display/400-italic.css";
+import "@fontsource/playfair-display/700.css";
+import "@fontsource/playfair-display/700-italic.css";
+import SiteFooter from "../components/layout/SiteFooter.astro";
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  height: number;
+}
+
+const { title, height } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1440" />
+    <meta
+      name="description"
+      content="HeArt To Heart is a gentle art-healing space for exploring, healing, and connecting."
+    />
+    <title>{title} | HeArt To Heart</title>
+  </head>
+  <body>
+    <div class="site-canvas" style={`height:${height}px`}>
+      <SiteHeader pathname={Astro.url.pathname} />
+      <main class="page-content">
+        <slot />
+      </main>
+      <SiteFooter />
+    </div>
+  </body>
+</html>
