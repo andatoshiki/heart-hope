@@ -26,20 +26,26 @@ const { title, height } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1440" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
       content="HeArt To Heart is a gentle art-healing space for exploring, healing, and connecting."
     />
     <title>{title} | HeArt To Heart</title>
+    <script is:inline>
+      document.documentElement.classList.add("motion-enabled");
+    </script>
   </head>
   <body>
-    <div class="site-canvas" style={`height:${height}px`}>
+    <div class="site-canvas" style={`--desktop-page-height:${height}px`}>
       <SiteHeader pathname={Astro.url.pathname} />
       <main class="page-content">
         <slot />
       </main>
       <SiteFooter />
     </div>
+    <script>
+      import "../scripts/pageTransitions";
+    </script>
   </body>
 </html>

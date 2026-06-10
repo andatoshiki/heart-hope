@@ -31,7 +31,19 @@ const categories: Array<{ value: Category; label: string }> = [
 ];
 
 export default function ToolboxFilter({ activities }: Props) {
-  const [category, setCategory] = useState<Category>("all");
+  const [category, setCategory] = useState<Category>(() => {
+    if (typeof window === "undefined") {
+      return "all";
+    }
+
+    const requestedCategory = new URLSearchParams(window.location.search).get(
+      "category",
+    );
+
+    return categories.some((item) => item.value === requestedCategory)
+      ? (requestedCategory as Category)
+      : "all";
+  });
   const visibleActivities = useMemo(
     () =>
       category === "all"

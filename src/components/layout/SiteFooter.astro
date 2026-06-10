@@ -134,4 +134,65 @@
     font-weight: 200;
     letter-spacing: 4px;
   }
+
+  @media (max-width: 1439px) {
+    .site-footer {
+      position: relative;
+      display: grid;
+      height: auto;
+      padding: 64px var(--page-gutter) 36px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px;
+    }
+
+    .footer-brand,
+    .footer-column,
+    .newsletter,
+    .footer-rule,
+    small {
+      position: static;
+    }
+
+    .footer-brand,
+    .newsletter {
+      width: auto;
+    }
+
+    .footer-rule {
+      width: 100%;
+      height: 1px;
+      grid-column: 1 / -1;
+      background: #dedbd6;
+    }
+
+    small {
+      grid-column: 1 / -1;
+      line-height: 1.8;
+    }
+
+    .newsletter div,
+    .newsletter input {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .site-footer {
+      grid-template-columns: 1fr;
+      gap: 38px;
+    }
+
+    .footer-rule,
+    small {
+      grid-column: auto;
+    }
+
+    .footer-brand p br {
+      display: none;
+    }
+
+    small {
+      letter-spacing: 2px;
+    }
+  }
 </style>
