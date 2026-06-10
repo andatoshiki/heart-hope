@@ -312,6 +312,10 @@ const isActive = (href: string) =>
       color: var(--gold);
     }
 
+    .mobile-menu nav > a.active::after {
+      bottom: 0;
+    }
+
     .mobile-toolbox-links {
       display: grid;
       margin-top: 22px;
@@ -321,15 +325,16 @@ const isActive = (href: string) =>
     .mobile-toolbox-links strong {
       margin-bottom: 8px;
       color: var(--olive);
-      font-size: 15px;
-      letter-spacing: 1.2px;
+      font-size: 11px;
+      letter-spacing: 1.8px;
     }
 
     .mobile-toolbox-links a {
       min-height: 44px;
       padding: 12px 0;
       color: #72716f;
-      font-size: 14px;
+      font-size: 11px;
+      letter-spacing: 1.8px;
     }
   }
 
