@@ -201,4 +201,94 @@ import safePlace from "../assets/images/corridor-safe-place.png";
     font-size: 24px;
     line-height: 33px;
   }
+
+  @media (max-width: 1439px) {
+    .corridor-tabs,
+    .theme-panel,
+    .corridor-gallery {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      height: auto;
+      margin-right: var(--page-gutter);
+      margin-left: var(--page-gutter);
+    }
+
+    .corridor-tabs {
+      width: min(100%, 295px);
+      margin-top: 48px;
+      margin-right: auto;
+      margin-left: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .theme-panel {
+      margin-top: 52px;
+      padding: clamp(32px, 7vw, 68px);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(36px, 6vw, 64px);
+    }
+
+    .theme-copy h2 {
+      font-size: clamp(44px, 7vw, 58px);
+      line-height: 1.2;
+    }
+
+    .theme-copy p br {
+      display: none;
+    }
+
+    .theme-panel img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 512 / 536;
+    }
+
+    .corridor-gallery {
+      display: grid;
+      margin-top: var(--section-gap);
+      margin-bottom: var(--section-gap);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .corridor-gallery article,
+    .first-quote,
+    .art-one,
+    .art-two,
+    .second-quote {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      height: auto;
+    }
+
+    .quote-card {
+      min-height: 190px;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 390 / 422;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .theme-panel,
+    .corridor-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .theme-panel img {
+      grid-row: 1;
+    }
+
+    .quote-card p {
+      font-size: 27px;
+      line-height: 1.35;
+    }
+  }
 </style>

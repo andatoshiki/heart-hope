@@ -129,4 +129,57 @@ import paintbrush from "../assets/images/paintbrush-canvas.png";
     letter-spacing: 0.5px;
     line-height: 20px;
   }
+
+  @media (max-width: 1439px) {
+    .about-story,
+    .values {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      height: auto;
+      margin: 0 var(--page-gutter);
+    }
+
+    .about-story {
+      padding: var(--section-gap) 0;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(40px, 7vw, 72px);
+    }
+
+    .copy h1 {
+      margin: 28px 0 34px;
+    }
+
+    .about-story img {
+      width: 100%;
+      height: auto;
+      margin-top: 0;
+      aspect-ratio: 568 / 806;
+    }
+
+    .values {
+      margin-bottom: var(--section-gap);
+      padding: clamp(64px, 9vw, 100px) clamp(28px, 8vw, 100px);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about-story,
+    .value-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-story img {
+      max-height: 620px;
+    }
+
+    .values {
+      text-align: left;
+    }
+
+    .value-grid {
+      gap: 36px;
+    }
+  }
 </style>

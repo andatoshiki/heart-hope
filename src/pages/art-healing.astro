@@ -139,4 +139,58 @@ import galleryWall from "../assets/images/gallery-wall.png";
     letter-spacing: 0.5px;
     line-height: 20px;
   }
+
+  @media (max-width: 1439px) {
+    .healing-section,
+    .note {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      height: auto;
+      margin: 0 var(--page-gutter);
+    }
+
+    .healing-section {
+      padding-top: var(--section-gap);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(36px, 7vw, 80px);
+    }
+
+    .healing-section img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 8 / 5;
+    }
+
+    .second {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .note {
+      margin-top: var(--section-gap);
+      margin-bottom: var(--section-gap);
+      padding: clamp(64px, 9vw, 96px) clamp(28px, 8vw, 90px);
+    }
+
+    .note br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .healing-section,
+    .second {
+      grid-template-columns: 1fr;
+    }
+
+    .second img {
+      grid-row: 1;
+    }
+
+    blockquote {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+  }
 </style>

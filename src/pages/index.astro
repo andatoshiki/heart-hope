@@ -297,4 +297,138 @@ import corridorTree from "../assets/images/corridor-tree.png";
     color: var(--ink-soft);
     line-height: 23px;
   }
+
+  @media (max-width: 1439px) {
+    .hero,
+    .home-about,
+    .home-toolbox,
+    .home-healing,
+    .home-corridor {
+      position: relative;
+      top: auto;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero {
+      min-height: clamp(540px, 80vw, 680px);
+      padding: clamp(110px, 18vw, 150px) var(--page-gutter) 150px;
+    }
+
+    .hero .eyebrow {
+      margin-top: 0;
+    }
+
+    .hero h1 {
+      margin: 28px auto 32px;
+      font-size: clamp(46px, 8vw, 72px);
+      letter-spacing: -1.5px;
+      line-height: 1.18;
+      text-wrap: balance;
+    }
+
+    .hero h1 br {
+      display: none;
+    }
+
+    .mountain {
+      bottom: -100px;
+      left: 50%;
+      width: 260px;
+      height: 260px;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .home-about {
+      padding: var(--section-gap) var(--page-gutter);
+      grid-template-columns: 1fr;
+      gap: 42px;
+    }
+
+    .about-copy {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(28px, 5vw, 60px);
+    }
+
+    .home-toolbox,
+    .home-healing {
+      padding: var(--section-gap) var(--page-gutter);
+    }
+
+    .home-toolbox h2,
+    .home-healing h2 {
+      font-size: clamp(52px, 9vw, 70px);
+    }
+
+    .activity-row {
+      width: 100%;
+      margin: 64px 0 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 60px 28px;
+    }
+
+    .home-healing {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 56px 36px;
+    }
+
+    .home-healing > .eyebrow,
+    .home-healing > h2 {
+      grid-column: 1 / -1;
+    }
+
+    .healing-card,
+    .left-card,
+    .right-card {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      align-items: flex-start;
+    }
+
+    .healing-card img {
+      width: clamp(150px, 18vw, 210px);
+      height: clamp(150px, 18vw, 210px);
+      flex-basis: clamp(150px, 18vw, 210px);
+    }
+
+    .home-corridor {
+      padding: var(--section-gap) var(--page-gutter);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(42px, 7vw, 85px);
+    }
+
+    .home-corridor img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 568 / 358;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about-copy,
+    .activity-row,
+    .home-healing,
+    .home-corridor {
+      grid-template-columns: 1fr;
+    }
+
+    .healing-card {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .healing-card img {
+      width: 190px;
+      height: 190px;
+      flex-basis: auto;
+    }
+
+    .home-corridor h2 br {
+      display: none;
+    }
+  }
 </style>

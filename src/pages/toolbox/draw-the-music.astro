@@ -158,4 +158,90 @@ const activity = activities[0];
     font-size: 20px;
     font-weight: 700;
   }
+
+  @media (max-width: 1439px) {
+    .detail-hero,
+    .related {
+      position: relative;
+      top: auto;
+      width: 100%;
+      height: auto;
+    }
+
+    .detail-hero {
+      padding-bottom: 120px;
+    }
+
+    .detail-hero > img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1440 / 550;
+      min-height: 340px;
+    }
+
+    .detail-card {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: calc(100% - (var(--page-gutter) * 2));
+      height: auto;
+      min-height: 620px;
+      margin: -110px auto 0;
+      padding: clamp(60px, 9vw, 82px) clamp(28px, 8vw, 88px) 56px;
+    }
+
+    .detail-card h1 {
+      font-size: clamp(44px, 8vw, 58px);
+      line-height: 1.2;
+    }
+
+    .actions {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      width: 100%;
+      margin-top: 48px;
+      padding-top: 36px;
+    }
+
+    .related {
+      padding: 0 var(--page-gutter) var(--section-gap);
+    }
+
+    .related-grid {
+      width: 100%;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .related img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .detail-hero {
+      padding-bottom: 88px;
+    }
+
+    .detail-hero > img {
+      aspect-ratio: 4 / 3;
+    }
+
+    .detail-card {
+      min-height: 0;
+      margin-top: -64px;
+      text-align: left;
+    }
+
+    .detail-card h1 {
+      margin-top: 16px;
+    }
+
+    .related-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
 </style>
