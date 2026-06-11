@@ -1,5 +1,5 @@
 ---
-import { ArrowRight } from "@lucide/astro";
+import { ArrowDown, ArrowRight } from "@lucide/astro";
 import ActivityCard from "../components/ui/ActivityCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { activities } from "../data/content";
@@ -8,8 +8,17 @@ import clock from "../assets/images/clock.jpg";
 import corridorTree from "../assets/images/corridor-tree.png";
 ---
 
-<BaseLayout title="Home" height={4042}>
-  <section class="hero full-bleed" aria-labelledby="hero-title">
+<BaseLayout title="Home" height={4162}>
+  <script is:inline>
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("scrolly-enabled");
+    }
+  </script>
+  <section
+    class="hero full-bleed"
+    aria-labelledby="hero-title"
+    data-scrolly-hero
+  >
     <p class="eyebrow">WELCOME TO HEART TO HEART</p>
     <h1 id="hero-title" class="serif">
       This is a space where feelings<br />can speak without words
@@ -19,9 +28,17 @@ import corridorTree from "../assets/images/corridor-tree.png";
       <ArrowRight size={16} stroke-width={1.5} />
     </a>
     <div class="mountain"></div>
+    <a
+      class="scroll-cue"
+      href="#home-about"
+      aria-label="Scroll to the About section"
+    >
+      <span>SCROLL TO EXPLORE</span>
+      <ArrowDown size={18} stroke-width={1.5} />
+    </a>
   </section>
 
-  <section class="home-about">
+  <section id="home-about" class="home-about" data-scrolly>
     <div class="about-heading">
       <span class="eyebrow">ABOUT US</span>
       <h2 class="serif">HeART To Heart</h2>
@@ -36,12 +53,13 @@ import corridorTree from "../assets/images/corridor-tree.png";
         I started this because I often had feelings I couldn't name. Sometimes,
         words felt too small, too limiting. I felt confused, frustrated, and
         alone. Then, I discovered that putting a color to my mood, or moving to
-        music, gave those feelings a home.
+        music, gave those feelings a home. It was a quiet revolution inside me. I
+        wanted to build a bridge so others might find that path, too.
       </p>
     </div>
   </section>
 
-  <section class="home-toolbox full-bleed">
+  <section class="home-toolbox full-bleed" data-scrolly>
     <p class="eyebrow">WELCOME TO HEALING ACTIVITIES</p>
     <h2>Toolbox</h2>
     <div class="activity-row">
@@ -49,7 +67,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
     </div>
   </section>
 
-  <section class="home-healing full-bleed">
+  <section class="home-healing full-bleed" data-scrolly>
     <p class="eyebrow">WELCOME TO ART HEALING</p>
     <h2>101</h2>
     <article class="healing-card left-card">
@@ -76,7 +94,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
     </article>
   </section>
 
-  <section class="home-corridor">
+  <section class="home-corridor" data-scrolly>
     <img src={corridorTree.src} alt="A quiet tree-lined path" />
     <div>
       <h2>The “Right Now” Corridor<br />A Gallery of Shared Feelings.</h2>
@@ -90,7 +108,31 @@ import corridorTree from "../assets/images/corridor-tree.png";
   </section>
 </BaseLayout>
 
+<script>
+  import "../scripts/scrollytelling";
+</script>
+
 <style>
+  /* Scrollytelling: each narrated section starts lifted + transparent and
+     settles into place when Scrollama reports it has entered the viewport.
+     Everything is gated behind `.scrolly-enabled` (added by an inline script
+     only when motion is allowed), so without JS or with reduced motion the
+     content renders normally. Only transforms/opacity change, never layout, so
+     the fixed desktop canvas geometry is preserved. */
+  :global(.scrolly-enabled) [data-scrolly] {
+    opacity: 0;
+    transform: translateY(48px);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  :global(.scrolly-enabled) [data-scrolly].is-inview {
+    opacity: 1;
+    transform: none;
+  }
+
   .hero {
     position: absolute;
     top: 81px;
@@ -105,6 +147,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
   .hero .eyebrow {
     margin-top: 190px;
     color: #fff;
+    transform: translateY(calc(var(--scrolly-progress, 0) * -22px));
   }
 
   .hero h1 {
@@ -117,6 +160,8 @@ import corridorTree from "../assets/images/corridor-tree.png";
     font-weight: 400;
     letter-spacing: -3px;
     line-height: 99px;
+    transform: translateY(calc(var(--scrolly-progress, 0) * -44px));
+    opacity: calc(1 - var(--scrolly-progress, 0) * 0.55);
   }
 
   .hero-button {
@@ -143,12 +188,42 @@ import corridorTree from "../assets/images/corridor-tree.png";
 
   .mountain {
     position: absolute;
-    bottom: -60px;
-    left: 565px;
-    width: 310px;
-    height: 310px;
-    background: #252729;
-    transform: rotate(45deg);
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-right: 270px solid transparent;
+    border-bottom: 320px solid #252729;
+    border-left: 270px solid transparent;
+    background: transparent;
+    transform: translateX(-50%)
+      translateY(calc(var(--scrolly-progress, 0) * -90px));
+  }
+
+  .scroll-cue {
+    position: absolute;
+    z-index: 4;
+    right: 48px;
+    bottom: 32px;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    writing-mode: vertical-rl;
+    opacity: calc(1 - var(--scrolly-progress, 0) * 2.4);
+  }
+
+  .scroll-cue :global(svg) {
+    animation: scroll-cue-bob 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scroll-cue-bob {
+    50% {
+      transform: translateY(5px);
+    }
   }
 
   .home-about {
@@ -171,8 +246,8 @@ import corridorTree from "../assets/images/corridor-tree.png";
 
   .about-copy {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr;
+    gap: 24px;
     color: var(--ink-soft);
     font-size: 14px;
     letter-spacing: 0.5px;
@@ -194,7 +269,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
     position: absolute;
     top: 1182px;
     width: 1440px;
-    height: 978px;
+    height: 1098px;
     padding-top: 105px;
     --full-bleed-background: #fdfcf9;
     background: #fdfcf9;
@@ -221,7 +296,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
 
   .home-healing {
     position: absolute;
-    top: 2160px;
+    top: 2280px;
     width: 1440px;
     height: 701px;
     padding-top: 85px;
@@ -280,7 +355,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
 
   .home-corridor {
     position: absolute;
-    top: 2861px;
+    top: 2981px;
     display: grid;
     width: 1440px;
     height: 725px;
@@ -346,11 +421,20 @@ import corridorTree from "../assets/images/corridor-tree.png";
     }
 
     .mountain {
-      bottom: -100px;
+      bottom: 0;
       left: 50%;
-      width: 260px;
-      height: 260px;
-      transform: translateX(-50%) rotate(45deg);
+      width: 0;
+      height: 0;
+      border-right: clamp(150px, 22vw, 270px) solid transparent;
+      border-bottom: clamp(180px, 26vw, 320px) solid #252729;
+      border-left: clamp(150px, 22vw, 270px) solid transparent;
+      transform: translateX(-50%)
+        translateY(calc(var(--scrolly-progress, 0) * -90px));
+    }
+
+    .scroll-cue {
+      right: var(--page-gutter);
+      bottom: 28px;
     }
 
     .home-about {
@@ -360,8 +444,8 @@ import corridorTree from "../assets/images/corridor-tree.png";
     }
 
     .about-copy {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(28px, 5vw, 60px);
+      grid-template-columns: 1fr;
+      gap: clamp(18px, 3vw, 24px);
     }
 
     .home-toolbox,
@@ -422,6 +506,15 @@ import corridorTree from "../assets/images/corridor-tree.png";
   }
 
   @media (max-width: 767px) {
+    .scroll-cue {
+      right: 20px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      writing-mode: horizontal-tb;
+    }
+
     .about-copy,
     .activity-row,
     .home-healing,
@@ -443,6 +536,18 @@ import corridorTree from "../assets/images/corridor-tree.png";
 
     .home-corridor h2 br {
       display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue :global(svg) {
+      animation: none;
+    }
+
+    :global(.scrolly-enabled) [data-scrolly] {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 </style>

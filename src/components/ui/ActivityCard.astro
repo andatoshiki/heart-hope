@@ -40,6 +40,24 @@ const { activity } = Astro.props;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .activity-card:hover .image-wrap img,
+  .activity-card:focus-within .image-wrap img {
+    transform: scale(1.07);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    img,
+    .activity-card:hover .image-wrap img,
+    .activity-card:focus-within .image-wrap img {
+      transform: none;
+      transition: none;
+    }
   }
 
   h3 {

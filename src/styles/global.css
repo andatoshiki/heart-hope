@@ -27,6 +27,7 @@
 html {
   min-width: 1440px;
   background: var(--canvas);
+  scroll-behavior: smooth;
 }
 
 body {

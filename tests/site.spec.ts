@@ -65,6 +65,33 @@ test("hero CTA matches the design scale and uses a Lucide arrow", async ({
   await expect(heroButton.locator("svg.lucide-arrow-right")).toHaveCount(1);
 });
 
+test("homepage separates toolbox and healing sections and provides a scroll cue", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const sectionGeometry = await page.evaluate(() => {
+    const toolbox = document.querySelector(".home-toolbox")?.getBoundingClientRect();
+    const healing = document.querySelector(".home-healing")?.getBoundingClientRect();
+    const cards = Array.from(document.querySelectorAll(".activity-card"));
+    const cardBottom = Math.max(
+      ...cards.map((card) => card.getBoundingClientRect().bottom),
+    );
+
+    return {
+      bottomGap: toolbox && toolbox.bottom - cardBottom,
+      healingTop: healing?.top,
+      toolboxBottom: toolbox?.bottom,
+    };
+  });
+
+  expect(sectionGeometry.healingTop).toBe(sectionGeometry.toolboxBottom);
+  expect(sectionGeometry.bottomGap).toBeGreaterThanOrEqual(120);
+  await expect(page.locator(".home-toolbox")).toHaveCSS("height", "1098px");
+  await expect(page.locator('.scroll-cue[href="#home-about"]')).toBeVisible();
+  await expect(page.locator(".scroll-cue svg.lucide-arrow-down")).toHaveCount(1);
+});
+
 test("navigation marks the current route", async ({ page }) => {
   await page.goto("/resources");
   await expect(page.locator('.site-header a[href="/resources"]')).toHaveClass(
