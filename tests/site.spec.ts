@@ -15,11 +15,55 @@ for (const [route, title] of routes) {
   test(`${route} renders its static desktop frame`, async ({ page }) => {
     await page.goto(route);
     await expect(page).toHaveTitle(new RegExp(title));
-    await expect(page.locator(".site-canvas")).toHaveCSS("width", "1440px");
+    await expect(page.locator(".page-content")).toHaveCSS("width", "1440px");
     await expect(page.locator(".site-header")).toBeVisible();
     await expect(page.locator(".site-footer")).toBeVisible();
   });
 }
+
+test("desktop canvas fills viewports wider than the design frame", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1444, height: 900 });
+  await page.goto("/");
+
+  const geometry = await page.evaluate(() => {
+    const canvas = document.querySelector(".site-canvas")?.getBoundingClientRect();
+    const content = document.querySelector(".page-content")?.getBoundingClientRect();
+    const hero = document.querySelector(".hero");
+    const heroBleed = hero && getComputedStyle(hero, "::before");
+
+    return {
+      canvas: canvas && { left: canvas.left, right: canvas.right },
+      content: content && {
+        left: content.left,
+        right: content.right,
+        width: content.width,
+      },
+      heroBleed: heroBleed && {
+        left: Number.parseFloat(heroBleed.left),
+        width: Number.parseFloat(heroBleed.width),
+      },
+      viewportWidth: window.innerWidth,
+    };
+  });
+
+  expect(geometry.canvas).toEqual({ left: 0, right: geometry.viewportWidth });
+  expect(geometry.content).toEqual({ left: 2, right: 1442, width: 1440 });
+  expect(geometry.heroBleed).toEqual({ left: -2, width: geometry.viewportWidth });
+});
+
+test("hero CTA matches the design scale and uses a Lucide arrow", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const heroButton = page.locator(".hero-button");
+
+  await expect(heroButton).toHaveCSS("width", "290px");
+  await expect(heroButton).toHaveCSS("height", "64px");
+  await expect(heroButton).toHaveCSS("font-size", "14px");
+  await expect(heroButton.locator("svg.lucide-arrow-right")).toHaveCount(1);
+});
 
 test("navigation marks the current route", async ({ page }) => {
   await page.goto("/resources");

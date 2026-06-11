@@ -74,13 +74,14 @@ const isActive = (href: string) =>
     position: absolute;
     z-index: 30;
     top: 0;
-    left: 0;
+    left: 50%;
     display: flex;
     width: 1440px;
     height: 81px;
     align-items: center;
     border-bottom: 1px solid rgba(207, 206, 206, 0.3);
     background: rgba(253, 252, 251, 0.98);
+    transform: translateX(-50%);
   }
 
   .brand {
@@ -111,7 +112,7 @@ const isActive = (href: string) =>
     display: block;
     padding: 33px 0 31px;
     color: #57534e;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 1.8px;
     white-space: nowrap;
@@ -229,10 +230,12 @@ const isActive = (href: string) =>
   @media (max-width: 1439px) {
     .site-header {
       position: sticky;
+      left: 0;
       width: 100%;
       height: var(--mobile-header-height);
       background: rgba(253, 252, 251, 0.96);
       backdrop-filter: blur(12px);
+      transform: none;
     }
 
     .brand {

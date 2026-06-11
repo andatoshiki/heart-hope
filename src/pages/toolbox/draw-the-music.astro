@@ -52,8 +52,10 @@ const activity = activities[0];
   }
 
   .detail-hero > img {
-    width: 1440px;
+    width: 100vw;
+    max-width: none;
     height: 550px;
+    margin-left: calc(720px - 50vw);
     object-fit: cover;
     filter: grayscale(0.15) brightness(0.65);
   }
@@ -174,7 +176,9 @@ const activity = activities[0];
 
     .detail-hero > img {
       width: 100%;
+      max-width: 100%;
       height: auto;
+      margin-left: 0;
       aspect-ratio: 1440 / 550;
       min-height: 340px;
     }

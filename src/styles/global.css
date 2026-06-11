@@ -17,6 +17,7 @@
   --section-gap: clamp(72px, 10vw, 140px);
   --mobile-header-height: 64px;
   --desktop-header-height: 81px;
+  --desktop-bleed: max(0px, calc((100vw - 1440px) / 2));
 }
 
 * {
@@ -62,10 +63,9 @@ textarea:focus-visible {
 
 .site-canvas {
   position: relative;
-  width: 1440px;
+  width: 100%;
   height: var(--desktop-page-height);
   min-width: 1440px;
-  margin: 0 auto;
   overflow: hidden;
   background: var(--canvas);
 }
@@ -78,6 +78,22 @@ textarea:focus-visible {
   position: relative;
   width: 1440px;
   height: 100%;
+  margin: 0 auto;
+}
+
+.full-bleed {
+  isolation: isolate;
+}
+
+.full-bleed::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: calc(0px - var(--desktop-bleed));
+  width: calc(100% + var(--desktop-bleed) + var(--desktop-bleed));
+  background: var(--full-bleed-background);
+  content: "";
 }
 
 .serif {

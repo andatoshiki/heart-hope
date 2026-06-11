@@ -1,4 +1,4 @@
-<footer class="site-footer">
+<footer class="site-footer full-bleed">
   <div class="footer-brand">
     <div class="serif logo">HeArt To Heart</div>
     <p>
@@ -34,13 +34,16 @@
 <style>
   .site-footer {
     position: absolute;
-    right: 0;
+    right: auto;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    width: 1440px;
     height: 456px;
     padding: 74px 104px 0;
+    --full-bleed-background: var(--surface);
     background: var(--surface);
     color: var(--ink-soft);
+    transform: translateX(-50%);
   }
 
   .footer-brand {
@@ -139,10 +142,14 @@
     .site-footer {
       position: relative;
       display: grid;
+      right: auto;
+      left: auto;
+      width: auto;
       height: auto;
       padding: 64px var(--page-gutter) 36px;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 48px;
+      transform: none;
     }
 
     .footer-brand,

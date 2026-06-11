@@ -1,4 +1,5 @@
 ---
+import { ArrowRight } from "@lucide/astro";
 import ActivityCard from "../components/ui/ActivityCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { activities } from "../data/content";
@@ -8,12 +9,15 @@ import corridorTree from "../assets/images/corridor-tree.png";
 ---
 
 <BaseLayout title="Home" height={4042}>
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero full-bleed" aria-labelledby="hero-title">
     <p class="eyebrow">WELCOME TO HEART TO HEART</p>
     <h1 id="hero-title" class="serif">
       This is a space where feelings<br />can speak without words
     </h1>
-    <a class="hero-button" href="/toolbox">EXPLORE ART WORLD &nbsp; ↗</a>
+    <a class="hero-button" href="/toolbox">
+      <span>EXPLORE ART WORLD</span>
+      <ArrowRight size={16} stroke-width={1.5} />
+    </a>
     <div class="mountain"></div>
   </section>
 
@@ -37,7 +41,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
     </div>
   </section>
 
-  <section class="home-toolbox">
+  <section class="home-toolbox full-bleed">
     <p class="eyebrow">WELCOME TO HEALING ACTIVITIES</p>
     <h2>Toolbox</h2>
     <div class="activity-row">
@@ -45,7 +49,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
     </div>
   </section>
 
-  <section class="home-healing">
+  <section class="home-healing full-bleed">
     <p class="eyebrow">WELCOME TO ART HEALING</p>
     <h2>101</h2>
     <article class="healing-card left-card">
@@ -92,8 +96,9 @@ import corridorTree from "../assets/images/corridor-tree.png";
     top: 81px;
     width: 1440px;
     height: 732px;
-    overflow: hidden;
+    --full-bleed-background: var(--hero-blue);
     background: var(--hero-blue);
+    clip-path: inset(0 calc(0px - var(--desktop-bleed)));
     text-align: center;
   }
 
@@ -118,15 +123,22 @@ import corridorTree from "../assets/images/corridor-tree.png";
     position: relative;
     z-index: 3;
     display: inline-flex;
-    height: 42px;
+    width: 290px;
+    max-width: 100%;
+    height: 64px;
     align-items: center;
+    justify-content: center;
+    gap: 14px;
     border-radius: 999px;
-    padding: 0 24px;
     color: #121212;
     background: #fff;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 1.2px;
+  }
+
+  .hero-button :global(svg) {
+    flex: 0 0 auto;
   }
 
   .mountain {
@@ -184,6 +196,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
     width: 1440px;
     height: 978px;
     padding-top: 105px;
+    --full-bleed-background: #fdfcf9;
     background: #fdfcf9;
     text-align: center;
   }
@@ -212,6 +225,7 @@ import corridorTree from "../assets/images/corridor-tree.png";
     width: 1440px;
     height: 701px;
     padding-top: 85px;
+    --full-bleed-background: var(--surface);
     background: var(--surface);
     text-align: center;
   }
